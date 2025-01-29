@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        max-width: 600px;
+      }
+      form {
+        margin-bottom: 20px;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        font-size: 14px;
+      }
+      button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .output {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Text Generator</h1>
+    <form method="post" action="/generate">
+      <label for="prompt">Enter your prompt:</label>
+      <textarea
+        id="prompt"
+        name="prompt"
+        placeholder="Type your prompt here..."
+      ></textarea>
+      <button type="submit">Generate Text</button>
+    </form>
+
+    {% if prompt and generated_text %}
+    <div class="output">
+      <h2>Input Prompt:</h2>
+      <p>{{ prompt }}</p>
+      <h2>Generated Text:</h2>
+      <p>{{ generated_text }}</p>
+    </div>
+    {% endif %}
+  </body>
+</html>
