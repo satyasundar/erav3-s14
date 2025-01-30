@@ -8,7 +8,8 @@ from model import get_model  # Assuming your model.py is in the same directory
 app = FastAPI()
 
 # Load tokenizer and model
-tokenizer = AutoTokenizer.from_pretrained("HuggingFaceTB/cosmo2-tokenizer")
+# tokenizer = AutoTokenizer.from_pretrained("HuggingFaceTB/cosmo2-tokenizer")
+tokenizer = AutoTokenizer.from_pretrained("/app/tokenizer")
 model = get_model(tokenizer)
 device = (
     "cuda"
@@ -23,6 +24,13 @@ class GenerateRequest(BaseModel):
     prompt: str
     max_length: int = 50
     temperature: float = 0.7
+
+
+@app.get("/")
+def root():
+    return {
+        "message": "Model Container from docker-server image: Welcome to the Text Generation API. Use /generate to get started!"
+    }
 
 
 @app.post("/generate")

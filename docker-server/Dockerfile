@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
 COPY . .
+COPY tokenizer /app/tokenizer
 
 # Expose the port
 EXPOSE 8000
